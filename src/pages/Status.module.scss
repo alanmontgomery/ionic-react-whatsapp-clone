@@ -1,0 +1,63 @@
+.statusPage {
+    
+    ion-item {
+
+        --background: rgb(27, 27, 27);
+        background: rgb(27, 27, 27);
+        border-top: 1px solid rgb(41, 41, 41);
+        border-bottom: 1px solid rgb(41, 41, 41);
+        padding: 0.5rem;
+    }
+}
+
+.updates {
+
+    margin-top: 2rem !important;
+    text-align: center !important;
+}
+
+.smallText {
+
+    font-size: 0.9rem;
+}
+
+.statusAvatar {
+
+    padding: 0.5rem;
+}
+
+.statusAvatar {
+    
+    img {
+
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 500px;
+    }
+}
+
+.statusActions {
+    
+    ion-icon {
+
+        padding: 0.5rem;
+        background-color: rgb(56, 56, 56);
+        border-radius: 500px;
+    }
+}
+
+.imageUpload {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: var(--ion-color-primary);
+    border-radius: 500px;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-left: 2.5rem;
+    margin-top: 2rem;
+}

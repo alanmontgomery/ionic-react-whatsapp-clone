@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@capacitor/core": "3.0.1",
+    "@capacitor/ios": "^3.0.1",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -16,6 +17,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "ionicons": "^5.4.0",
+    "node-sass": "^4.14.1",
     "pullstate": "^1.22.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

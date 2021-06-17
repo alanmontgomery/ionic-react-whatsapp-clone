@@ -1,0 +1,69 @@
+.settingsPage {
+    
+    ion-item {
+
+        --background: rgb(27, 27, 27);
+        background: rgb(27, 27, 27);
+        border-top: 1px solid rgb(41, 41, 41);
+        border-bottom: 1px solid rgb(41, 41, 41);
+        padding: 0.5rem;
+    }
+}
+
+.settingsList {
+
+	ion-item {
+
+		--background: rgb(27, 27, 27);
+        background: rgb(27, 27, 27);
+		// border: none !important;
+        border-top: 1px solid rgb(34, 34, 34);
+        border-bottom: 1px solid rgb(36, 36, 36);
+		padding: 0;
+
+		p {
+			margin: 0;
+		}
+
+		ion-icon {
+
+			border-radius: 5px;
+			padding: 0.2rem;
+			font-size: 1.4rem;
+			margin-right: 1.2rem;
+			--setting-item-color: white;
+			background-color: var(--setting-item-color);
+			color: rgb(233, 46, 46);
+		}
+	}
+}
+
+.smallText {
+
+    font-size: 0.9rem;
+}
+
+.statusAvatar {
+
+    padding: 0.5rem;
+}
+
+.statusAvatar {
+    
+    img {
+
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 500px;
+    }
+}
+
+.statusActions {
+    
+    ion-icon {
+
+        padding: 0.5rem;
+        background-color: rgb(56, 56, 56);
+        border-radius: 500px;
+    }
+}

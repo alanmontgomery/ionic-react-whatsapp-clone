@@ -1,10 +1,10 @@
 import { IonContent, IonCardTitle, IonIcon, IonCol, IonItem, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonText, IonRow } from '@ionic/react';
 import { add, camera, pencil } from 'ionicons/icons';
-import './Status.css';
+import styles from './Status.module.scss';
 
 const Status = () => {
 	return (
-		<IonPage className="status-page">
+		<IonPage className={ styles.statusPage }>
 			<IonHeader>
 				<IonToolbar>
 					<IonButtons slot="start">
@@ -20,9 +20,9 @@ const Status = () => {
 					</IonToolbar>
 				</IonHeader>
 
-				<IonItem lines="none" className="status-avatar ion-margin-top">
+				<IonItem lines="none" className={ `${ styles.statusAvatar } ion-margin-top` }>
 					<img src="https://pbs.twimg.com/profile_images/1383061489469292548/5dhsPd4j_400x400.jpg" alt="avatar" />
-					<div className="image-upload">
+					<div className={ styles.imageUpload }>
 						<IonIcon icon={ add } color="white" />
 					</div>
 					<IonCol className="ion-padding-start">
@@ -30,10 +30,10 @@ const Status = () => {
 							<strong>My Status</strong>
 						</IonText>
 						<br />
-						<IonText color="medium" className="small-text">Add to my status</IonText>
+						<IonText color="medium" className={ styles.smallText }>Add to my status</IonText>
 					</IonCol>
 
-					<IonRow className="status-actions">
+					<IonRow className={ styles.statusActions }>
 						<IonCol size="6">
 							<IonIcon color="primary" icon={ camera } />
 						</IonCol>
@@ -44,7 +44,7 @@ const Status = () => {
 					</IonRow>
 				</IonItem>
 
-				<IonItem lines="none" className="ion-margin-top updates">
+				<IonItem lines="none" className={ `ion-margin-top ${ styles.updates }` }>
 					<IonText color="medium">No recent updates to show right now.</IonText>
 				</IonItem>
 			</IonContent>
