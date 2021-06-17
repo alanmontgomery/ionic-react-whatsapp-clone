@@ -1,0 +1,65 @@
+.chat-page ion-header,
+.chat-page ion-toolbar {
+
+    --min-height: 3.5rem;
+}
+
+.chat-page ion-title {
+
+    margin-left: -3.5rem;
+}
+
+.chat-page ion-title p {
+
+    padding: 0;
+    margin: 0;
+}
+
+.chat-contact {
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-contact img {
+
+    height: 2rem;
+    width: 2rem;
+    border-radius: 500px;
+}
+
+.chat-contact-details {
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+    text-align: left;
+}
+
+.chat-contact-details p {
+
+    font-size: 0.9rem;
+}
+
+.chat-contact-details ion-text {
+
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.chat-bubble {
+
+    background-color: rgb(58, 58, 58);
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.chat-bubble p {
+
+    padding: 0;
+    margin: 0;
+}
