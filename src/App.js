@@ -4,6 +4,7 @@ import {
   IonIcon,
   IonLabel,
   IonRouterOutlet,
+  IonSplitPane,
   IonTabBar,
   IonTabButton,
   IonTabs,
@@ -35,6 +36,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Chat from './pages/Chat';
+import Tabs from './components/Tabs';
+import SubPages from './components/SubPages';
 
 const App = () => {
 
@@ -42,41 +45,48 @@ const App = () => {
 
 		{
 			name: "Status",
+			subPage: false,
 			icon: discOutline,
-			path: "/status",
+			path: "/pages/status",
 			component: Status,
 			isTab: true
 		},
 		{
 			name: "Calls",
+			subPage: false,
 			icon: callOutline,
-			path: "/calls",
+			path: "/pages/calls",
 			component: Calls,
 			isTab: true
 		},
 		{
 			name: "Camera",
+			subPage: false,
 			icon: cameraOutline,
-			path: "/camera",
+			path: "/pages/camera",
 			component: Calls,
 			isTab: true
 		},
 		{
 			name: "Chats",
+			default: true,
+			subPage: false,
 			icon: chatbubblesOutline,
-			path: "/chats",
+			path: "/pages/chats",
 			component: Chats,
 			isTab: true
 		},
 		{
 			name: "Settings",
+			subPage: false,
 			icon: settingsOutline,
-			path: "/settings",
+			path: "/pages/settings",
 			component: Settings,
 			isTab: true
 		},
 		{
 			name: "Chat",
+			subPage: true,
 			icon: chatbubblesOutline,
 			path: "/view-chat/:contact_id",
 			component: Chat,
@@ -87,33 +97,21 @@ const App = () => {
 	return (
 		<IonApp>
 			<IonReactRouter>
-			<IonTabs>
-				<IonRouterOutlet>
 
-					{ pages.map((page, index) => {
+				<IonSplitPane contentId="main">
 
-						return (
-							<Route key={ index } exact path={ page.path }>
-								<page.component />
-							</Route>
-						);
-					})}
-				</IonRouterOutlet>
-				<IonTabBar slot="bottom">
+					<IonRouterOutlet id="main">
 
-					{ pages.map((page, index) => {
-
-						if (page.isTab) {
-							return (
-								<IonTabButton key={ index } tab={ `tab${ index }` } href={ page.path }>
-									<IonIcon icon={ page.icon } />
-									<IonLabel>{ page.name }</IonLabel>
-								</IonTabButton>
-							);
-						}
-					})}
-				</IonTabBar>
-			</IonTabs>
+						<Route path="/pages">
+							<Tabs pages={ pages } />
+						</Route>
+						<SubPages pages={ pages } />
+						
+						<Route path="/" component={ Chats } exact={ true } />
+						<Redirect exact from="/" to="/pages/chats" />
+					</IonRouterOutlet>
+				</IonSplitPane>
+				
 			</IonReactRouter>
 		</IonApp>
 	);

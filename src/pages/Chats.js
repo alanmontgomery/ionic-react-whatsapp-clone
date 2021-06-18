@@ -12,31 +12,6 @@ const Chats = () => {
 
 	console.log(latestChats);
 
-	const chats = [
-
-		{
-			name: "Amy Sister",
-			preview: "Al!! The black deer festival is cancelled, so I'm gonna do a wee hol",
-			avatar: "https://photos.bandsintown.com/large/9519779.jpeg",
-			date: "20:05",
-			read: false	
-		},
-		{
-			name: "Max Lynch",
-			preview: "Excited for the Ioniconf 2021! The 23rd can't come quick enough",
-			avatar: "https://pbs.twimg.com/profile_images/1318970727173885953/bln98FNj_400x400.jpg",
-			date: "Yesterday",
-			read: true
-		},
-		{
-			name: "Mike Hartington",
-			preview: "Hey Alan, can I schedule a call with you tomorrow please",
-			avatar: "https://pbs.twimg.com/profile_images/1084993841898446849/DJ8XtR6L_400x400.jpg",
-			date: "Saturday",
-			read: true
-		}
-	];
-
 	return (
 		<IonPage>
 			<IonHeader>
@@ -72,7 +47,7 @@ const Chats = () => {
 						<div key={ index } className="chat-row">
 							<img src={ contact.avatar } alt="avatar" />
 
-							<IonItem routerLink={ `/view-chat/${ contact.id }` } detail={ false }>
+							<IonItem routerLink={ `/chats/${ contact.id }` } detail={ false }>
 
 								<div className="chat-content">
 									<h2>{ contact.name }</h2>
