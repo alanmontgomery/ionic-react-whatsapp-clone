@@ -1,42 +1,42 @@
-import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
+import { IonIcon, IonLabel, IonTabBar, IonTabButton, IonTabs, IonRouterOutlet } from "@ionic/react";
 import { Redirect, Route } from "react-router-dom";
 
-const Tabs = ({ pages }) => {
+const Tabs = (props) => {
 
-    return (
+	return (
+		<IonTabs>
+			<IonRouterOutlet>
 
-        <IonTabs>
-            <IonRouterOutlet>
+				{ props.tabs.map((tab, i) => {
 
-                { pages.map((page, index) => {
+					const TabComponent = tab.component;
 
-                    const TabComponent = page.component;
+					if (tab.isTab) {
+						return <Route key={ `tab_route_${ i }` } path={ tab.path } render={ (props) => <TabComponent { ...props } /> } exact={ true }/>;
+					} else {
 
-                    if (page.isTab) {
-                        return (
-                            <Route key={ index } exact={ true } path={ page.path }>
-                                <TabComponent />
-                            </Route>
-                        );
-                    }
-                })}
-            </IonRouterOutlet>
-            <IonTabBar slot="bottom">
+						return <Route key={ `child_tab_route_${ i }` } path={ tab.path } render={ (props) => <TabComponent {...props} /> } exact={ false } />;
+					}
+				})}
+			</IonRouterOutlet>
 
-                { pages.map((page, index) => {
+			<IonTabBar slot={ props.position }>
 
-                    if (page.isTab) {
-                        return (
-                            <IonTabButton key={ index } tab={ `tab${ index }` } href={ page.path }>
-                                <IonIcon icon={ page.icon } />
-                                <IonLabel>{ page.name }</IonLabel>
-                            </IonTabButton>
-                        );
-                    }
-                })}
-            </IonTabBar>
-        </IonTabs>
-    );
+				{ props.tabs.map((tab, i) => {
+
+					if (tab.isTab) {
+
+						return (
+							<IonTabButton key={ `tab_button_${ i + 1 }` } tab={ `tab_${ i + 1 }` } href={ tab.path }>
+								<IonIcon icon={ tab.icon } />
+								{ tab.label && <IonLabel>{ tab.label }</IonLabel> }
+							</IonTabButton>
+						);
+					}
+				})}
+			</IonTabBar>
+		</IonTabs>
+	);
 }
 
 export default Tabs;

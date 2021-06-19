@@ -1,6 +1,4 @@
-import { CapacitorConfig } from '@capacitor/cli';
-
-const config: CapacitorConfig = {
+const config = {
   appId: 'com.example.app',
   appName: 'ionic-react-whatsapp-clone',
   webDir: 'build',

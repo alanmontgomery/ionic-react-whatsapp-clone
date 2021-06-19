@@ -1,18 +1,14 @@
 import { Route } from "react-router-dom";
 
-const SubPages = ({ pages }) => {
+const SubPages = (props) => {
 
 	return (
             <>
-                { pages.map((page, i) => {
+                { props.routes.map((route, i) => {
 
-                    const PageComponent = page.component;
+                    const RouteComponent = route.component;
 
-                    return (
-                        <Route key={ i } path={ page.path } exact={ false }>
-                            <PageComponent />
-                        </Route>
-                    );
+                    return <Route key={ i } path={ route.path } render={ (props) => <RouteComponent { ...props } /> } exact={ false } />;
                 })}
             </>
 	);

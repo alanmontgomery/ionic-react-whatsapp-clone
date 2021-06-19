@@ -47,7 +47,7 @@ const Chats = () => {
 						<div key={ index } className="chat-row">
 							<img src={ contact.avatar } alt="avatar" />
 
-							<IonItem routerLink={ `/chats/${ contact.id }` } detail={ false }>
+							<IonItem routerLink={ `/view-chat/${ contact.id }` } detail={ false }>
 
 								<div className="chat-content">
 									<h2>{ contact.name }</h2>
