@@ -27,6 +27,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To take photos and video</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To store photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To use library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

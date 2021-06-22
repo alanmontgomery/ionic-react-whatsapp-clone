@@ -13,6 +13,7 @@ import ReplyTo from "../components/ReplyTo";
 import { ChatBottomDetails } from "../components/ChatBottomDetails";
 import { ChatRepliedQuote } from "../components/ChatRepliedQuote";
 import { useCamera } from "../hooks/useCamera";
+import { useGallery } from "../hooks/useGallery";
 
 const Chat = () => {
 
@@ -24,7 +25,8 @@ const Chat = () => {
     const contact = ContactStore.useState(getContact(params.contact_id));
     const notificationCount = getNotificationCount(chats);
 
-    const { addFileOrTakePhoto } = useCamera();
+    const { takePhoto } = useCamera();
+    const { prompt } = useGallery();
 
     //  Local state
     const [ message, setMessage ] = useState("");
@@ -42,6 +44,7 @@ const Chat = () => {
     const contentRef = useRef();
     const swiperRefs = useRef([]);
     const textareaRef = useRef();
+    const textareaInputRef = useRef();
     const sideRef = useRef();
     const sendRef = useRef();
     const replyToAnimationRef = useRef();
@@ -81,6 +84,7 @@ const Chat = () => {
     //  Scroll to end of content
     //  Mark all chats as read if we come into a chat
     //  Set up our swipe events for animations and gestures
+    //  Listen for keyboard events for textarea
     useIonViewWillEnter(() => {
 
         scrollToBottom();
@@ -244,21 +248,37 @@ const Chat = () => {
         sendRef.current.animation.play();
     }, [ showSendButton ]);
 
-    const sendMessage = () => {
+    const sendMessage = (image = false, imagePath = false) => {
 
-        sendChatMessage(params.contact_id, message, replyToMessage, replyToMessage.id);
-        setMessage("");
+        if (message !== "" || image === true) {
+            
+            sendChatMessage(params.contact_id, message, replyToMessage, replyToMessage ? replyToMessage.id : false, image, imagePath);
+            setMessage("");
         
-        setMessageSent(true);
-        setTimeout(() => setMessageSent(false), 10);
+            setMessageSent(true);
+            setTimeout(() => setMessageSent(false), 10);
+            image && setTimeout(() => scrollToBottom(), 100);
+        }
     }
 
     const handlePhoto = async () => {
 
-        const returned = await addFileOrTakePhoto();
+        const returnedFilePath = await takePhoto();
+        sendMessage(true, returnedFilePath);
+    }
 
-        console.log(returned);
-        alert(returned);
+    const handlePrompt = async () => {
+
+        const returnedFilePath = await prompt();
+        sendMessage(true, returnedFilePath);
+    }
+
+    const handleFocus = e => {
+
+        // e.preventDefault();
+        // e.stopPropagation();
+
+        // e.target.readonly = false;
     }
 
     const replyToProps = {
@@ -300,24 +320,28 @@ const Chat = () => {
             </IonHeader>
 
             <IonContent id="main-chat-content" ref={ contentRef }>
-                { chat.map((message, index) => {
 
-                    const repliedMessage = chat.filter(subMessage => parseInt(subMessage.id) === parseInt(message.replyID))[0];
+                <div className="main-chat-container">
+                    { chat.map((message, index) => {
 
-                    return (
-                        <div ref={ ref => swiperRefs.current[index] = ref } id={ `chatBubble_${ message.id }`} key={ index } className={ `chat-bubble ${ message.sent ? "bubble-sent" : "bubble-received" }` } { ...longPressEvent }>
-                            <div id={ `chatText_${ message.id }`}>
+                        const repliedMessage = chat.filter(subMessage => parseInt(subMessage.id) === parseInt(message.replyID))[0];
 
-                                <ChatRepliedQuote message={ message } contact={ contact } repliedMessage={ repliedMessage } />
+                        return (
+                            <div ref={ ref => swiperRefs.current[index] = ref } id={ `chatBubble_${ message.id }`} key={ index } className={ `chat-bubble ${ message.sent ? "bubble-sent" : "bubble-received" }` } { ...longPressEvent }>
+                                <div id={ `chatText_${ message.id }`}>
 
-                                { message.preview }
-                                <ChatBottomDetails message={ message } />
+                                    <ChatRepliedQuote message={ message } contact={ contact } repliedMessage={ repliedMessage } />
+
+                                    { message.preview }
+                                    { message.image && <img src={ message.imagePath } /> }
+                                    <ChatBottomDetails message={ message } />
+                                </div>
+
+                                <div className={ `bubble-arrow ${ message.sent && "alt" }` }></div>
                             </div>
-
-                            <div className={ `bubble-arrow ${ message.sent && "alt" }` }></div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
 
                 <IonActionSheet header="Message Actions" subHeader={ actionMessage && actionMessage.preview } isOpen={ showActionSheet } onDidDismiss={ () => setShowActionSheet(false) } buttons={ actionSheetButtons } />
 
@@ -326,16 +350,16 @@ const Chat = () => {
 
             { replyToMessage && <ReplyTo { ...replyToProps } /> }
 
-            <IonFooter className="chat-footer">
+            <IonFooter className="chat-footer" id="chat-footer">
                 <IonGrid>
                     <IonRow className="ion-align-items-center">
                         <IonCol size="1">
-                            <IonIcon icon={ addOutline } color="primary" />
+                            <IonIcon icon={ addOutline } color="primary" onClick={ handlePrompt } />
                         </IonCol>
 
                         <div className="chat-input-container">
                             <CreateAnimation ref={ textareaRef } { ...textareaAnimation }>
-                                <IonTextarea id="input-ref" rows="1" value={ message } onIonChange={ e => setMessage(e.target.value) } />
+                                <IonTextarea onClick={ e => handleFocus(e) } ref={ textareaInputRef } id="input-ref" rows="1" value={ message } onIonChange={ e => setMessage(e.target.value) } />
                             </CreateAnimation>
                         </div>
 

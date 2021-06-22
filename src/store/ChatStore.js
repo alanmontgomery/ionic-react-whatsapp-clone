@@ -343,10 +343,10 @@ export const markAllAsRead = contactId => {
 	});
 }
 
-export const sendChatMessage = (contactId, message, reply = false, replyID = false) => {
+export const sendChatMessage = (contactId, message, reply = false, replyID = false, image = false, imagePath = false) => {
 
 	const today = new Date();
-	const currentTime = `${ today.getHours() }:${ today.getMinutes() }`;
+	const currentTime = `${ today.getHours() < 10 ? `0${ today.getHours() }` : today.getHours() }:${ today.getMinutes() < 10 ? `0${ today.getMinutes() }` : today.getMinutes() }`;
 
 	ChatStore.update(s => {
 
@@ -361,7 +361,9 @@ export const sendChatMessage = (contactId, message, reply = false, replyID = fal
 			read: true,
 			starred: false,
 			reply,
-			replyID
+			replyID,
+			image: image,
+			imagePath: imagePath
 		};
 
 		s.chats[chatIndex].chats.push(newChat);

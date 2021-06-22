@@ -94,7 +94,7 @@
     background-color: rgb(22, 22, 22);
     border-top: 1px solid rgb(47, 47, 47);
     padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
+    padding-bottom: 1rem;
 }
 
 .chat-footer ion-textarea {
@@ -277,4 +277,19 @@
 
     color: rgb(167, 167, 167);
     font-size: 0.8rem;
+}
+
+.main-chat-container {
+
+    /* padding-bottom: 10rem !important; */
+    /* margin-bottom: 30rem !important; */
+}
+
+.bottom-container {
+
+    position: absolute;
+    bottom: 4.5rem;
+    height: 5rem;
+    background-color: red;
+    width: 100%;
 }
