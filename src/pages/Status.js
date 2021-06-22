@@ -44,9 +44,7 @@ const Status = () => {
 					</IonRow>
 				</IonItem>
 
-				<IonItem lines="none" className={ `ion-margin-top ${ styles.updates }` }>
-					<IonText color="medium">No recent updates to show right now.</IonText>
-				</IonItem>
+				<p color="medium" className={ `ion-text-center ${ styles.updates }` }>No recent updates to show right now.</p>
 			</IonContent>
 		</IonPage>
 	);

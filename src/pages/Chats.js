@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonButtons, IonButton, IonIcon, IonItem } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonButtons, IonButton, IonIcon, IonItem, IonModal } from '@ionic/react';
 import { checkmarkDone, createOutline } from 'ionicons/icons';
 import './Chats.css';
 
@@ -6,13 +6,17 @@ import { ChatStore, ContactStore } from '../store';
 import { getContacts, getChats } from '../store/Selectors';
 import { useEffect, useState } from 'react';
 import ChatItem from '../components/ChatItem';
+import { useRef } from 'react';
+import ContactModal from '../components/ContactModal';
 
 const Chats = () => {
 
+	const pageRef = useRef();
 	const contacts = ContactStore.useState(getContacts);
 	const latestChats = ChatStore.useState(getChats);
 
 	const [ results, setResults ] = useState(latestChats);
+	const [ showContactModal, setShowContactModal ] = useState(false);
 
 	useEffect(() => {
 
@@ -36,14 +40,14 @@ const Chats = () => {
 	}
 
 	return (
-		<IonPage>
+		<IonPage ref={ pageRef }>
 			<IonHeader>
 				<IonToolbar>
 					<IonButtons slot="start">
 						<IonButton fill="clear">Edit</IonButton>
 					</IonButtons>
 					<IonButtons slot="end">
-						<IonButton fill="clear">
+						<IonButton fill="clear" onClick={ () => setShowContactModal(true) }>
 							<IonIcon icon={ createOutline } />
 						</IonButton>
 					</IonButtons>
@@ -63,6 +67,10 @@ const Chats = () => {
 
 					return <ChatItem chat={ chat } key={ index } />;
 				})}
+
+				<IonModal isOpen={ showContactModal } swipeToClose={ true } presentingElement={ pageRef.current } onDidDismiss={ () => setShowContactModal(false) }>
+      				<ContactModal close={ () => setShowContactModal(false) } />
+    			</IonModal>
 			</IonContent>
 		</IonPage>
 	);

@@ -8,9 +8,10 @@ const Settings = () => {
 
 		[
 			{
-			title: "Starred Messages",
-			icon: star,
-			color: "rgb(255, 208, 0)"
+				title: "Starred Messages",
+				url: "/starred-messages",
+				icon: star,
+				color: "rgb(255, 208, 0)"
 			},
 			{
 				title: "WhatsApp Web/Desktop",
@@ -97,7 +98,7 @@ const Settings = () => {
 
 								return (
 
-									<IonItem key={ `settingOption_${ index }` } lines="none" detail={ true }>
+									<IonItem routerLink={ option.url ? option.url : "" } key={ `settingOption_${ index }` } lines="none" detail={ true }>
 										<IonIcon icon={ option.icon } color="white" style={ itemStyle } />
 										<p>{ option.title }</p>
 									</IonItem>

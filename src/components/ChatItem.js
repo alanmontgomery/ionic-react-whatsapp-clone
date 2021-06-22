@@ -16,10 +16,14 @@ const ChatItem = ({ chat }) => {
         <div className="chat-row" id="chat-row">
             <img src={ contact.avatar } alt="avatar" />
 
-            <IonItem className="chat-content-containere" routerLink={ `/view-chat/${ contact.id }` } detail={ false }>
+            <IonItem className="chat-content-container" routerLink={ `/view-chat/${ contact.id }` } detail={ false }>
 
                 <div className="chat-content">
-                    <h2>{ contact.name }</h2>
+                    
+                    <div className="chat-name-date">
+
+                        <h2>{ contact.name }</h2>
+                    </div>
                     <p className="ion-text-wrap">
                         { (read && received) && 
                             <IonIcon icon={ checkmarkDone } color="primary" /> 
@@ -27,10 +31,12 @@ const ChatItem = ({ chat }) => {
                         { preview }
                     </p>
                 </div>
-                
+
                 <div className="chat-details">
-                    <p className={ `chat-date ${ (received && notificationCount > 0) && "chat-unread"}` }>{ date }</p>
-                    { (received && notificationCount > 0) && <div className="chat-notification">{ notificationCount }</div> }
+
+                    <p className={ `chat-date ${ (notificationCount > 0) && "chat-unread"}` }>{ date }</p>
+            
+                    { (notificationCount > 0) && <div className="chat-notification">{ notificationCount }</div> }
                 </div>
             </IonItem>
         </div>

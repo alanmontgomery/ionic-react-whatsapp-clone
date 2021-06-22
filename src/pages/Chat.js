@@ -1,5 +1,5 @@
 import { IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonText, IonTextarea, IonTitle, IonToolbar, CreateAnimation, createGesture, useIonViewWillEnter, IonActionSheet, IonToast } from "@ionic/react";
-import { addOutline, alertOutline, callOutline, cameraOutline, micOutline, send, shareOutline, star, starOutline, trashOutline, videocamOutline } from "ionicons/icons";
+import { addOutline, alertOutline, callOutline, cameraOutline, micOutline, send, shareOutline, starOutline, trashOutline, videocamOutline } from "ionicons/icons";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -44,7 +44,6 @@ const Chat = () => {
     const contentRef = useRef();
     const swiperRefs = useRef([]);
     const textareaRef = useRef();
-    const textareaInputRef = useRef();
     const sideRef = useRef();
     const sendRef = useRef();
     const replyToAnimationRef = useRef();
@@ -60,7 +59,7 @@ const Chat = () => {
         {
             text: "Reply To Message",
             icon: shareOutline,
-            handler: () => console.log("Reply To")
+            handler: () => showReplyToMessage(actionMessage)
         } 
         :
         {
@@ -84,7 +83,6 @@ const Chat = () => {
     //  Scroll to end of content
     //  Mark all chats as read if we come into a chat
     //  Set up our swipe events for animations and gestures
-    //  Listen for keyboard events for textarea
     useIonViewWillEnter(() => {
 
         scrollToBottom();
@@ -93,6 +91,7 @@ const Chat = () => {
         setSwipeEvents();
     });
 
+    //  For displaying toast messages
     const toaster = message => {
 
         setToastMessage(message);
@@ -126,6 +125,7 @@ const Chat = () => {
         });
     }
 
+    //  Long press callback
     const onLongPress = (e) => {
 
         const elementID = e.target.id;
@@ -143,21 +143,21 @@ const Chat = () => {
         delay: 2000,
     });
 
+    const showReplyToMessage = async message => {
+
+            //  Activate reply-to functionality
+            setReplyToMessage(message);
+            await replyToAnimationRef.current.animation.play();
+            contentRef.current.scrollToBottom(300);
+    }
+
     const checkBubble = async (bubble, message, event) => {
 
         if (event.deltaX >= 120) {
 
             //  Activate reply-to functionality
-            setReplyToMessage(message);
             bubble.style.transform = "none";
-
-            await replyToAnimationRef.current.animation.play();
-            contentRef.current.scrollToBottom(300);
-
-            //  Focus on the textarea
-            // setTimeout(() => {
-            //     document.querySelector("#input-ref").focus();
-            // }, 10);
+            showReplyToMessage(message);
         } else {
 
             //  Put chat bubble back to original position
@@ -273,14 +273,6 @@ const Chat = () => {
         sendMessage(true, returnedFilePath);
     }
 
-    const handleFocus = e => {
-
-        // e.preventDefault();
-        // e.stopPropagation();
-
-        // e.target.readonly = false;
-    }
-
     const replyToProps = {
 
         replyToAnimationRef,
@@ -308,11 +300,11 @@ const Chat = () => {
                     </IonTitle>
 
                     <IonButtons slot="end">
-                        <IonButton fill="clear">
+                        <IonButton fill="clear" onClick={ () => toaster("As this is a UI only, video calling wouldn't work here.")}>
                             <IonIcon icon={ videocamOutline } />
                         </IonButton>
 
-                        <IonButton fill="clear">
+                        <IonButton fill="clear" onClick={ () => toaster("As this is a UI only, calling wouldn't work here.")}>
                             <IonIcon icon={ callOutline } />
                         </IonButton>
                     </IonButtons>
@@ -321,27 +313,25 @@ const Chat = () => {
 
             <IonContent id="main-chat-content" ref={ contentRef }>
 
-                <div className="main-chat-container">
-                    { chat.map((message, index) => {
+                { chat.map((message, index) => {
 
-                        const repliedMessage = chat.filter(subMessage => parseInt(subMessage.id) === parseInt(message.replyID))[0];
+                    const repliedMessage = chat.filter(subMessage => parseInt(subMessage.id) === parseInt(message.replyID))[0];
 
-                        return (
-                            <div ref={ ref => swiperRefs.current[index] = ref } id={ `chatBubble_${ message.id }`} key={ index } className={ `chat-bubble ${ message.sent ? "bubble-sent" : "bubble-received" }` } { ...longPressEvent }>
-                                <div id={ `chatText_${ message.id }`}>
+                    return (
+                        <div ref={ ref => swiperRefs.current[index] = ref } id={ `chatBubble_${ message.id }`} key={ index } className={ `chat-bubble ${ message.sent ? "bubble-sent" : "bubble-received" }` } { ...longPressEvent }>
+                            <div id={ `chatText_${ message.id }`}>
 
-                                    <ChatRepliedQuote message={ message } contact={ contact } repliedMessage={ repliedMessage } />
+                                <ChatRepliedQuote message={ message } contact={ contact } repliedMessage={ repliedMessage } />
 
-                                    { message.preview }
-                                    { message.image && <img src={ message.imagePath } /> }
-                                    <ChatBottomDetails message={ message } />
-                                </div>
-
-                                <div className={ `bubble-arrow ${ message.sent && "alt" }` }></div>
+                                { message.preview }
+                                { message.image && message.imagePath && <img src={ message.imagePath } alt="chat message" /> }
+                                <ChatBottomDetails message={ message } />
                             </div>
-                        );
-                    })}
-                </div>
+
+                            <div className={ `bubble-arrow ${ message.sent && "alt" }` }></div>
+                        </div>
+                    );
+                })}
 
                 <IonActionSheet header="Message Actions" subHeader={ actionMessage && actionMessage.preview } isOpen={ showActionSheet } onDidDismiss={ () => setShowActionSheet(false) } buttons={ actionSheetButtons } />
 
@@ -359,7 +349,7 @@ const Chat = () => {
 
                         <div className="chat-input-container">
                             <CreateAnimation ref={ textareaRef } { ...textareaAnimation }>
-                                <IonTextarea onClick={ e => handleFocus(e) } ref={ textareaInputRef } id="input-ref" rows="1" value={ message } onIonChange={ e => setMessage(e.target.value) } />
+                                <IonTextarea rows="1" value={ message } onIonChange={ e => setMessage(e.target.value) } />
                             </CreateAnimation>
                         </div>
 

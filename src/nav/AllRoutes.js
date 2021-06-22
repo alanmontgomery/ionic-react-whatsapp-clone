@@ -6,6 +6,7 @@ import Settings from "../pages/Settings";
 
 //  Main tab children
 import Chat from "../pages/Chat";
+import Starred from "../pages/Starred";
 
 //  Sub pages
 // import InboxItem from "../../pages/InboxItem";
@@ -62,7 +63,7 @@ const tabChildrenRoutes = [
 const subPageRoutes = [
 
     { component: Chat, path: "/view-chat/:contact_id" },
-    { component: Chat, path: "/view-chat/:contact_id/:starred_message_id" },
+    { component: Starred, path: "/starred-messages" }
 ];
 
 //  Let's combine these together as they need to be controlled within the same IonRouterOutlet

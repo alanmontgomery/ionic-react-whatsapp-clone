@@ -25,6 +25,7 @@
 
     padding-bottom: 1rem;
     padding-top: 1rem;
+    width: 100%;
 }
 
 .chat-content h2 {
@@ -52,16 +53,29 @@
     margin-right: 0.4rem;
 }
 
-.chat-date {
+.chat-name-date {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chat-details .chat-date {
 
     color: rgb(153, 153, 153);
     font-size: 0.8rem;
-    padding-left: 0.2rem;;
+    padding-left: 0.5rem;;
 }
 
-.chat-unread {
+.chat-details .chat-unread {
 
     color: var(--ion-color-primary);
+}
+
+.chat-notification-count {
+
+    margin: 0;
+    padding: 0;
 }
 
 .chat-details {

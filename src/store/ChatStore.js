@@ -10,7 +10,7 @@ const ChatStore = new Store({
 
 				{
 					id: 1,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -19,7 +19,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 2,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -28,7 +28,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 3,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -37,7 +37,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 4,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -46,7 +46,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 5,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -55,7 +55,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 6,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -64,7 +64,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 7,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -73,7 +73,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 8,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -82,7 +82,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 9,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -91,7 +91,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 10,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -100,7 +100,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 11,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -109,7 +109,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 12,
-					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:05",
@@ -118,7 +118,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 13,
-					preview: "Hey Alan, thanks for getting in contact! I will send you an email confirming our discussion soon.",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: true,
 					sent: false,
 					date: "20:05",
@@ -127,7 +127,7 @@ const ChatStore = new Store({
 				},
 				{
 					id: 14,
-					preview: "Thanks so much! Look forward to it.",
+					preview: "This is a test whatsapp message inside the whatsapp clone app",
 					received: false,
 					sent: true,
 					date: "20:10",
@@ -180,7 +180,7 @@ const ChatStore = new Store({
 					sent: false,
 					date: "Friday",
 					read: false,
-					starred: true
+					starred: false
 				}
 			]
 		},

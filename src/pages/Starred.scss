@@ -1,0 +1,117 @@
+.starred-message {
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.starred-header {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.starred-contact {
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin-left: 1rem;
+
+    img {
+
+        height: 2rem;
+        width: 2rem;
+        border-radius: 500px;
+    }
+
+    p {
+
+        margin-left: 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}
+
+.starred-date {
+
+    margin-right: 1.5rem;
+    color: rgb(138, 138, 138);
+    font-size: 0.8rem;
+}
+
+.starred-content {
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1.5rem;
+    margin-left: 3.2rem;
+
+    ion-icon {
+
+        color: rgb(138, 138, 138);
+        font-size: 1rem;
+    }
+
+    p {
+
+        border-radius: 10px;
+        max-width: 75%;
+        padding: 0.5rem;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+.received-starred-content {
+
+    p {
+
+        background-color: var(--chat-bubble-received-color);
+    }
+}
+
+.sent-starred-content {
+
+    p {
+
+        background-color: var(--chat-bubble-sent-color);
+    }
+}
+
+.starred-content:not(:first-child) {
+
+    border-bottom: 2px solid rgb(24, 24, 24);
+}
+
+.no-starred {
+
+    padding: 3rem;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 3rem;
+
+    img {
+
+        border-radius: 500px;
+        width: 10rem;
+        height: 10rem;
+    }
+
+    h1 {
+
+        color: rgb(165, 165, 165);
+        font-size: 1.1rem;
+    }
+
+    p {
+
+        color: rgb(165, 165, 165);
+        font-size: 0.9rem;
+    }
+}

@@ -191,7 +191,7 @@
 
 .chat-reply-to-row {
 
-    bottom: 50px !important;
+    bottom: 70px !important;
     position: absolute;
 
     border-left: 4px solid rgb(224, 176, 18);
@@ -277,12 +277,6 @@
 
     color: rgb(167, 167, 167);
     font-size: 0.8rem;
-}
-
-.main-chat-container {
-
-    /* padding-bottom: 10rem !important; */
-    /* margin-bottom: 30rem !important; */
 }
 
 .bottom-container {
