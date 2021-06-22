@@ -8,7 +8,7 @@ If you'd like to support, you can <a className="link" href="https://www.buymeaco
 ### Included in this Ionic React Template/UI
 * Status, Settings, Starred Messages, Chats, View Chat, View Contacts, Calls pages
 * Reply-To in chat message using Ionic Animations and gestures (both swipe and long press)
-* Star messages and view them in starred from settingss
+* Star messages and view them in starred from settings
 * Notification badges (on chat list)
 * Read Receipts of chats
 * Notification counts
