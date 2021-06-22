@@ -3,14 +3,37 @@ import { checkmarkDone, createOutline } from 'ionicons/icons';
 import './Chats.css';
 
 import { ChatStore, ContactStore } from '../store';
-import { getContacts, getChats, getLatestChats } from '../store/Selectors';
+import { getContacts, getChats } from '../store/Selectors';
+import { useEffect, useState } from 'react';
+import ChatItem from '../components/ChatItem';
 
 const Chats = () => {
 
 	const contacts = ContactStore.useState(getContacts);
 	const latestChats = ChatStore.useState(getChats);
 
-	console.log(latestChats);
+	const [ results, setResults ] = useState(latestChats);
+
+	useEffect(() => {
+
+		setResults(latestChats);
+	}, [ latestChats ]);
+
+	const search = e => {
+
+		const searchTerm = e.target.value;
+
+		if (searchTerm !== "") {
+
+			const searchTermLower = searchTerm.toLowerCase();
+
+			const newResults = latestChats.filter(chat => contacts.filter(c => c.id === chat.contact_id)[0].name.toLowerCase().includes(searchTermLower));
+			setResults(newResults);
+		} else {
+
+			setResults(latestChats);
+		}
+	}
 
 	return (
 		<IonPage>
@@ -32,40 +55,13 @@ const Chats = () => {
 					<IonToolbar>
 						<IonTitle size="large">Chats</IonTitle>
 					</IonToolbar>
-					<IonSearchbar></IonSearchbar>
+					<IonSearchbar onIonChange={ e => search(e) } />
 				</IonHeader>
 
 
-				{ latestChats.map((chat, index) => {
+				{ results.map((chat, index) => {
 
-					const { chats, contact_id } = chat;
-					const { read, date, preview } = chats[0];
-					const contact = contacts.filter(c => c.id === contact_id)[0];
-
-					return (
-							
-						<div key={ index } className="chat-row">
-							<img src={ contact.avatar } alt="avatar" />
-
-							<IonItem routerLink={ `/view-chat/${ contact.id }` } detail={ false }>
-
-								<div className="chat-content">
-									<h2>{ contact.name }</h2>
-									<p>
-										{ read && 
-											<IonIcon icon={ checkmarkDone } color="primary" /> 
-										}
-										{ preview }
-									</p>
-								</div>
-								
-								<div className="chat-details">
-									<p className={ `chat-date ${ !read && "chat-unread"}` }>{ date }</p>
-									{ !read && <div className="chat-notification">1</div> }
-								</div>
-							</IonItem>
-						</div>
-					);
+					return <ChatItem chat={ chat } key={ index } />;
 				})}
 			</IonContent>
 		</IonPage>

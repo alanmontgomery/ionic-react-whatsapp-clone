@@ -48,6 +48,11 @@ const ContactStore = new Store({
 			name: "Mark Zuckerberg",
 			avatar: "/assets/mark.jpeg"
 		},
+		{
+            id: 10,
+			name: "Ionic Framework (not)",
+			avatar: "/assets/ionic.png"
+		},
 	]
 });
 

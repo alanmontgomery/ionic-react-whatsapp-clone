@@ -62,6 +62,7 @@ const tabChildrenRoutes = [
 const subPageRoutes = [
 
     { component: Chat, path: "/view-chat/:contact_id" },
+    { component: Chat, path: "/view-chat/:contact_id/:starred_message_id" },
 ];
 
 //  Let's combine these together as they need to be controlled within the same IonRouterOutlet

@@ -14,7 +14,8 @@ const ChatStore = new Store({
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
 					id: 2,
@@ -22,103 +23,116 @@ const ChatStore = new Store({
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 3,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 4,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 5,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 6,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 7,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 8,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 9,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 10,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 11,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 12,
 					preview: "Al!! The black deer festival is cancelled, so I'm gonna go on hol",
 					received: false,
 					sent: true,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 1,
+					id: 13,
 					preview: "Hey Alan, thanks for getting in contact! I will send you an email confirming our discussion soon.",
 					received: true,
 					sent: false,
 					date: "20:05",
-					read: false	
+					read: false,
+					starred: false
 				},
 				{
-					id: 2,
+					id: 14,
 					preview: "Thanks so much! Look forward to it.",
 					received: false,
 					sent: true,
 					date: "20:10",
-					read: false	
+					read: false,
+					starred: false
 				}
 			]
 		},
@@ -133,7 +147,8 @@ const ChatStore = new Store({
 					received: false,
 					sent: true,
 					date: "Yesterday",
-					read: true
+					read: true,
+					starred: false
 				}
 			]
 		},
@@ -148,7 +163,8 @@ const ChatStore = new Store({
 					received: false,
 					sent: true,
 					date: "Saturday",
-					read: true
+					read: true,
+					starred: false
 				}
 			]
 		},
@@ -163,7 +179,8 @@ const ChatStore = new Store({
 					received: true,
 					sent: false,
 					date: "Friday",
-					read: false
+					read: false,
+					starred: true
 				}
 			]
 		},
@@ -178,7 +195,8 @@ const ChatStore = new Store({
 					received: true,
 					sent: false,
 					date: "Thursday",
-					read: false
+					read: false,
+					starred: false
 				}
 			]
 		},
@@ -189,11 +207,30 @@ const ChatStore = new Store({
 
 				{
 					id: 1,
-					preview: "Hey Alan, this is a test whatsapp message",
+					preview: "Hey Alan, this is a test received whatsapp message",
 					received: true,
 					sent: false,
 					date: "Wednesday",
-					read: false
+					read: false,
+					starred: false
+				},
+				{
+					id: 2,
+					preview: "Hey Josh, this is a test sent whatsapp message",
+					received: true,
+					sent: true,
+					date: "Wednesday",
+					read: true,
+					starred: false
+				},
+				{
+					id: 3,
+					preview: "Awesome man! This seems to be coming together OK!",
+					received: true,
+					sent: false,
+					date: "Wednesday",
+					read: true,
+					starred: false
 				}
 			]
 		},
@@ -208,7 +245,8 @@ const ChatStore = new Store({
 					received: true,
 					sent: false,
 					date: "08/06/2021",
-					read: true
+					read: true,
+					starred: false
 				}
 			]
 		},
@@ -223,10 +261,54 @@ const ChatStore = new Store({
 					received: true,
 					sent: false,
 					date: "05/06/2021",
-					read: true
+					read: true,
+					starred: false
 				}
 			]
-		}
+		},
+		{
+			id: 9,
+			contact_id: 10,
+			chats: [
+
+				{
+					id: 1,
+					preview: "This is Alans WhatsApp clone using the Ionic Framework and CapacitorJS for some native functionality.",
+					received: true,
+					sent: false,
+					date: "Wednesday",
+					read: false,
+					starred: false
+				},
+				{
+					id: 2,
+					preview: "Yep, and don't forget the Ionic Animations for the slick UI transitions you see, and some Ionic Gestures for sliding etc, as well as some other things!",
+					received: true,
+					sent: true,
+					date: "Wednesday",
+					read: true,
+					starred: false
+				},
+				{
+					id: 3,
+					preview: "Cool! It looks good, can we get another teaser?",
+					received: true,
+					sent: false,
+					date: "Wednesday",
+					read: true,
+					starred: false
+				},
+				{
+					id: 4,
+					preview: "Sure... I'll post one on Twitter now!",
+					received: false,
+					sent: true,
+					date: "Wednesday",
+					read: true,
+					starred: false
+				}
+			]
+		},
 	]
 });
 
@@ -246,6 +328,55 @@ export const getNotificationCount = (allChats) => {
 	});
 
 	return notificationCount;
+}
+
+export const markAllAsRead = contactId => {
+
+	ChatStore.update(s => {
+
+		const chatIndex = s.chats.findIndex(chat => chat.contact_id === parseInt(contactId));
+
+		s.chats[chatIndex].chats.forEach(chat => {
+
+			chat.read = true;
+		});
+	});
+}
+
+export const sendChatMessage = (contactId, message, reply = false, replyID = false) => {
+
+	const today = new Date();
+	const currentTime = `${ today.getHours() }:${ today.getMinutes() }`;
+
+	ChatStore.update(s => {
+
+		const chatIndex = s.chats.findIndex(chat => chat.contact_id === parseInt(contactId));
+		const newChat = {
+
+			id: s.chats[chatIndex].length + 1,
+			preview: message,
+			received: false,
+			sent: true,
+			date: currentTime,
+			read: true,
+			starred: false,
+			reply,
+			replyID
+		};
+
+		s.chats[chatIndex].chats.push(newChat);
+	});
+}
+
+export const starChatMessage = (contactId, messageId) => {
+
+	ChatStore.update(s => {
+
+		const chatIndex = s.chats.findIndex(chat => chat.contact_id === parseInt(contactId));
+		const messageIndex = s.chats[chatIndex].chats.findIndex(message => message.id === parseInt(messageId));
+
+		s.chats[chatIndex].chats[messageIndex].starred = !s.chats[chatIndex].chats[messageIndex].starred;
+	});
 }
 
 export default ChatStore;
